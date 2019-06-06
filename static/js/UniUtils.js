@@ -63,7 +63,7 @@ function request(options) {
 
 			// 只有存在 Cookie 时，才向缓存中更新 Cookie
 			// 如要清理 Cookie，请调用 clearCookie()
-			if (res.cookies) {
+			if (res.cookies && res.cookies.length > 0) {
 				var cookie = "";
 
 				// 遍历响应结果的 Cookie
