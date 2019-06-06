@@ -61,16 +61,13 @@ function request(options) {
 		responseType: options.responseType,
 		success: res => {
 
-			var length = res.cookies.length
-
 			// 只有存在 Cookie 时，才向缓存中更新 Cookie
 			// 如要清理 Cookie，请调用 clearCookie()
-			if (length > 0) {
-
+			if (res.cookies) {
 				var cookie = "";
 
 				// 遍历响应结果的 Cookie
-				for (var i = 0; i < length; i++) {
+				for (var i = 0; i < res.cookies.length; i++) {
 					// 获取 Cookie name与value，并拼接
 					cookie += res.cookies[i].split(' ')[0]
 				}
@@ -82,6 +79,7 @@ function request(options) {
 				} catch (e) {
 					console.log("设置缓存中的 Cookie 异常：", e)
 				}
+
 			}
 
 			// 判断是否传入了 success function()，如果传入了，则执行 success function()
@@ -104,7 +102,7 @@ function request(options) {
 				complete(res)
 			}
 		}
-	});
+	})
 }
 
 /**
