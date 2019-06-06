@@ -1,5 +1,4 @@
 <script>
-	
 	// 第一步：引入 UniUtils 并命名
 	import uniUtils from "static/js/UniUtils.js"
 
@@ -9,18 +8,19 @@
 
 			// 第二步：使用别名调用 request(OBJECT),其他同 uni.request(OBJECT)：https://uniapp.dcloud.io/api/request/request
 			uniUtils.request({
-				url: "http://127.0.0.1/test.do",
-				success: res => {
-
+				url: 'https://www.example.com/request', //仅为示例，并非真实接口地址。
+				data: {
+					text: 'uni.request'
 				},
-				fail: res => {
-
+				header: {
+					'custom-header': 'hello' // 自定义请求头信息，不可出现 Cookie，否则您自定义的 Cookie 无意义
 				},
-				complete: res => {
-
+				success: (res) => {
+					console.log(res.data);
+					this.text = 'request success';
 				}
 			})
-
+			
 			// 如要有需要，清理 Cookie：
 			// uniUtils.clearCookie()
 
